@@ -58,7 +58,7 @@ export const ChatWindow = ({ chat, messages, currentUser, onSendMessage }: ChatW
       </div>
       
       <ChatInput 
-        onSendMessage={handleSendMessage}
+        onSendMessage={onSendMessage}
         currentUser={currentUser}
       />
     </div>
