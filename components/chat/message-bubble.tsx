@@ -11,40 +11,44 @@ interface MessageBubbleProps {
 
 export const MessageBubble = ({ message, isSentByCurrentUser }: MessageBubbleProps) => {
   return (
-    <div className={`flex items-end mb-3 ${isSentByCurrentUser ? 'justify-end' : 'justify-start'}`}>
+    <div 
+      className={`flex items-end mb-1 ${
+        isSentByCurrentUser ? 'justify-end' : 'justify-start'
+      }`}
+    >
       {!isSentByCurrentUser && (
-        <Avatar size="xs" className="mr-2 mb-2">
+        <Avatar size="xs" className="mr-1 mb-1 flex-shrink-0">
           <AvatarImage src={`/avatars/${message.sender_id}.png`} alt={message.sender_name} />
           <AvatarFallback name={message.sender_name} />
         </Avatar>
       )}
       
       <div 
-        className={`max-w-[75%] ${
+        className={`max-w-[65%] relative ${
           isSentByCurrentUser 
-            ? 'bg-green-100 rounded-l-lg rounded-tr-lg' 
-            : 'bg-white rounded-r-lg rounded-tl-lg'
-        } px-3 py-2 shadow-sm`}
+            ? 'bg-[#e7ffdb] rounded-tl-lg rounded-tr-lg rounded-bl-lg' 
+            : 'bg-white rounded-tr-lg rounded-tl-lg rounded-br-lg'
+        } px-2 py-1.5 shadow-sm`}
       >
         {!isSentByCurrentUser && (
-          <div className="text-sm font-medium text-green-700 mb-1">
+          <div className="text-xs font-medium text-[#1ea959] mb-0.5">
             {message.sender_name}
           </div>
         )}
         
-        <div className="text-sm text-gray-800">
+        <div className="text-sm text-gray-800 break-words">
           {message.content}
         </div>
         
-        <div className="flex items-center justify-end gap-1 mt-1">
-          <span className="text-xs text-gray-500">
+        <div className="flex items-center justify-end gap-0.5 mt-0.5">
+          <span className="text-[11px] text-gray-500">
             {formatMessageTime(message.timestamp)}
           </span>
           
           {isSentByCurrentUser && (
-            <div className="flex">
-              <Check className="h-3 w-3 text-gray-500" />
-              <Check className="h-3 w-3 text-gray-500 -ml-0.5" />
+            <div className="flex ml-0.5">
+              <Check className="h-3 w-3 text-[#53bdeb]" />
+              <Check className="h-3 w-3 text-[#53bdeb] -ml-[5px]" />
             </div>
           )}
         </div>

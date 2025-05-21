@@ -28,26 +28,26 @@ export const ChatInput = ({ onSendMessage, currentUser }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t bg-white">
+    <div className="bg-[#f0f2f5] border-t">
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <div className="flex items-center border-b">
+        <div className="flex items-center border-b bg-white">
           <TabsList className="bg-transparent p-0 h-auto">
             <TabsTrigger 
               value="whatsapp" 
-              className={`py-2 px-4 rounded-none ${
+              className={`py-2 px-4 rounded-none border-b-2 transition-colors ${
                 activeTab === 'whatsapp' 
-                  ? 'border-b-2 border-green-500 text-green-600' 
-                  : 'text-gray-500'
+                  ? 'border-[#25d366] text-[#25d366]' 
+                  : 'border-transparent text-gray-500'
               }`}
             >
               WhatsApp
             </TabsTrigger>
             <TabsTrigger 
               value="private" 
-              className={`py-2 px-4 rounded-none ${
+              className={`py-2 px-4 rounded-none border-b-2 transition-colors ${
                 activeTab === 'private' 
-                  ? 'border-b-2 border-green-500 text-green-600' 
-                  : 'text-gray-500'
+                  ? 'border-[#25d366] text-[#25d366]' 
+                  : 'border-transparent text-gray-500'
               }`}
             >
               Private Note
@@ -56,7 +56,7 @@ export const ChatInput = ({ onSendMessage, currentUser }: ChatInputProps) => {
         </div>
       </Tabs>
       
-      <div className="p-3">
+      <div className="p-2 bg-white">
         <div className="flex items-center">
           <div className="flex-1 relative">
             <textarea
@@ -64,53 +64,51 @@ export const ChatInput = ({ onSendMessage, currentUser }: ChatInputProps) => {
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Message..."
-              className="w-full resize-none border rounded-md px-3 py-2 max-h-24 min-h-10 focus:outline-none focus:border-green-500"
+              className="w-full resize-none border rounded-lg px-3 py-2 max-h-24 min-h-[40px] focus:outline-none focus:border-[#25d366] text-sm"
               rows={1}
             />
           </div>
           
-          <div className="ml-3">
-            <button 
-              onClick={handleSend}
-              disabled={!message.trim()}
-              className="bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center disabled:opacity-50"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+          <button 
+            onClick={handleSend}
+            disabled={!message.trim()}
+            className="ml-2 bg-[#25d366] text-white rounded-full w-9 h-9 flex items-center justify-center disabled:opacity-50 hover:bg-[#1ea952] transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
         </div>
         
         <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-1">
             <IconButton aria-label="Emoji">
-              <Smile className="h-5 w-5 text-gray-500" />
+              <Smile className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
             
             <IconButton aria-label="Attachment">
-              <Paperclip className="h-5 w-5 text-gray-500" />
+              <Paperclip className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
             
             <IconButton aria-label="Notify">
-              <Bell className="h-5 w-5 text-gray-500" />
+              <Bell className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
             
             <IconButton aria-label="Action">
-              <Zap className="h-5 w-5 text-gray-500" />
+              <Zap className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
             
             <IconButton aria-label="Camera">
-              <Camera className="h-5 w-5 text-gray-500" />
+              <Camera className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
             
             <IconButton aria-label="More">
-              <MoreHorizontal className="h-5 w-5 text-gray-500" />
+              <MoreHorizontal className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
           </div>
           
-          <div className="flex items-center text-sm font-medium text-green-600">
+          <div className="flex items-center text-sm font-medium text-[#25d366]">
             <span>{currentUser.name}</span>
             <ChevronDown className="h-4 w-4 ml-1" />
           </div>

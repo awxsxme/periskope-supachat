@@ -1,10 +1,15 @@
-import { createClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
+import { Database } from './database.types';
 
-// Create a single supabase client for the entire app
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+export const createClient = () => {
+  return createBrowserClient<Database>(
+    "https://rkhpgjrizrvuwsfcgopm.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJraHBnanJpenJ2dXdzZmNnb3BtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4MDM1ODgsImV4cCI6MjA2MzM3OTU4OH0.f6JFWKfuoUMZqz6NLYtWvhYKxZJHAqFdy29Evi1i81s"
+  );
+};
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Create a singleton instance
+export const supabase = createClient();
 
 export async function fetchChats() {
   const { data, error } = await supabase

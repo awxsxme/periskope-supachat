@@ -18,7 +18,6 @@ export const ChatWindow = ({ chat, messages, currentUser, onSendMessage }: ChatW
   const groupedMessages = groupMessagesByDate(messages);
 
   useEffect(() => {
-    // Scroll to bottom when messages update
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -30,24 +29,19 @@ export const ChatWindow = ({ chat, messages, currentUser, onSendMessage }: ChatW
     );
   }
 
-  const handleSendMessage = (content: string) => {
-    onSendMessage(content);
-  };
-
   return (
     <div className="flex-1 flex flex-col h-full">
       <ChatHeader chat={chat} />
       
       <div 
-        className="flex-1 overflow-y-auto p-4"
+        className="flex-1 overflow-y-auto p-4 space-y-1"
         style={{
-          backgroundImage: "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAB3UlEQVR4nO3dMU7DMBiG4a9/KSConEFIXIBzcAJWJFbEFGCFI3AGRiQWdg7CAMrAgFiQuqhVm9RJ/MT5HqmLFSmxX4aodVsIAAAAAAAAAAAAAAB0xmJ8sNlsZovFYi3pQdJK0p2kq/Htv5I+JL1KepO0l/S+3W6PU2UeIu8mvzccDte73e5J0pOk64br/Eh6kfRcVdV+qEGTFyLvU94bjsM/qy6ej9N5Y10hAAAAAAAAAAAAgJ6KiHhJo6Oj5L3Dbre7nDoTLaTIDOQ9SiHyfjtRCvkfNJUCAAAAAAAAAACA3smiiYjRvJLK5L2lFJlL5L21FAAAAAAAAAAAAADQnmyaiPtKA/JuSzZNxJypAdm0JZsmjpkaZNNUNm3IqAYZtSWjGmTUlowqyKgGGbVFRjXIqC0ZVZBRDTJqK6uMiIi191eJiPgbHGjIm3dLLSJ+JV1OHZ8bRT+XHUtqypvYkzf5lnLezFvKefNuKeXNu6WcN++Wct68W+p58+bdkAAAAAAAAAAAAAAAksmmiah5aJxNEzVTIJsm4oFxLcioRpYPjMfGzzTPp5gTqrSZN/mWct7MW8p5824p5c27pZw375Zy3rxb6nnzbtAEAAAAAAAAAAAAAGDOfgGcO6Y5UoZXpAAAAABJRU5ErkJggg==')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
+          backgroundImage: "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVEiJtZZPbBtFFMZ/M7ubXdtdb1xSFyeilBapySVU8h8OoFaooFSqiihIVIpQBKci6KEg9Q6H9kovIHoCIVQJJCKE1ENFjnAgcaSGC6rEnxBwA04Tx43t2FnvDAfjkNibxgHxnWb2e/u992bee7tCa00YFsffekFY+nUzFtjW0LrvjRXrCDIAaPLlW0nHL0SsZtVoaF98mLrx3pdhOqLtYPHChahZcYYO7KvPFxvRl5XPp1sN3adWiD1ZAqD6XYK1b/dvE5IWryTt2udLFedwc1+9kLp+vbbpoDh+6TklxBeAi9TL0taeWpdmZzQDry0AcO+jQ12RyohqqoYoo8RDwJrU+qXkjWtfi8Xxt58BdQuwQs9qC/afLwCw8tnQbqYAPsgxE1S6F3EAIXux2oQFKm0ihMsOF71dHYx+f3NND68ghCu1YIoePPQN1pGRABkJ6Bus96CutRZMydTl+TvuiRW1m3n0eDl0vRPcEysqdXn+jsQPsrHMquGeXEaY4Yk4wxWcY5V/9scqOMOVUFthatyTy8QyqwZ+kDURKoMWxNKr2EeqVKcTNOajqKoBgOE28U4tdQl5p5bwCw7BWquaZSzAPlwjlithJtp3pTImSqQRrb2Z8PHGigD4RZuNX6JYj6wj7O4TFLbCO/Mn/m8R+h6rYSUb3ekokRY6f/YukArN979jcW+V/S8g0eT/N3VN3kTqWbQ428m9/8k0P/1aIhF36PccEl6EhOcAUCrXKZXXWS3XKd2vc/TRBG9O5ELC17MmWubD2nKhUKZa26Ba2+D3P+4/MNCFwg59oWVeYhkzgN/JDR8deKBoD7Y+ljEjGZ0sosXVTvbc6RHirr2reNy1OXd6pJsQ+gqjk8VWFYmHrwBzW/n+uMPFiRwHB2I7ih8ciHFxIkd/3Omk5tCDV1t+2nNu5sxxpDFNx+huNhVT3/zMDz8usXC3ddaHBj1GHj/As08fwTS7Kt1HBTmyN29vdwAw+/wbwLVOJ3uAD1wi/dUH7Qei66PfyuRj4Ik9is+hglfbkbfR3cnZm7chlUWLdwmprtCohX4HUtlOcQjLYCu+fzGJH2QRKvP3UNz8bWk1qMxjGTOMThZ3kvgLI5AzFfo379UAAAAASUVORK5CYII=')",
+          backgroundColor: "#efeae2"
         }}
       >
         {groupedMessages.map((group, groupIndex) => (
-          <div key={groupIndex}>
+          <div key={groupIndex} className="space-y-1">
             <DateDivider date={group.date} />
             
             {group.messages.map((message, messageIndex) => (
