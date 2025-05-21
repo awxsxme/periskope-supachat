@@ -12,19 +12,19 @@ interface MessageBubbleProps {
 export const MessageBubble = ({ message, isSentByCurrentUser }: MessageBubbleProps) => {
   return (
     <div 
-      className={`flex items-end mb-1 ${
+      className={`flex items-end gap-1 ${
         isSentByCurrentUser ? 'justify-end' : 'justify-start'
       }`}
     >
       {!isSentByCurrentUser && (
-        <Avatar size="xs" className="mr-1 mb-1 flex-shrink-0">
+        <Avatar size="xs" className="mb-1 flex-shrink-0">
           <AvatarImage src={`/avatars/${message.sender_id}.png`} alt={message.sender_name} />
           <AvatarFallback name={message.sender_name} />
         </Avatar>
       )}
       
       <div 
-        className={`max-w-[65%] relative ${
+        className={`relative max-w-[65%] ${
           isSentByCurrentUser 
             ? 'bg-[#e7ffdb] rounded-tl-lg rounded-tr-lg rounded-bl-lg' 
             : 'bg-white rounded-tr-lg rounded-tl-lg rounded-br-lg'
@@ -40,7 +40,7 @@ export const MessageBubble = ({ message, isSentByCurrentUser }: MessageBubblePro
           {message.content}
         </div>
         
-        <div className="flex items-center justify-end gap-0.5 mt-0.5">
+        <div className="flex items-center justify-end gap-0.5 mt-0.5 min-w-[65px]">
           <span className="text-[11px] text-gray-500">
             {formatMessageTime(message.timestamp)}
           </span>
@@ -55,4 +55,4 @@ export const MessageBubble = ({ message, isSentByCurrentUser }: MessageBubblePro
       </div>
     </div>
   );
-};
+}

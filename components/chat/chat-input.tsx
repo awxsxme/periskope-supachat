@@ -64,7 +64,7 @@ export const ChatInput = ({ onSendMessage, currentUser }: ChatInputProps) => {
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Message..."
-              className="w-full resize-none border rounded-lg px-3 py-2 max-h-24 min-h-[40px] focus:outline-none focus:border-[#25d366] text-sm"
+              className="w-full resize-none border rounded-full px-4 py-2 max-h-24 min-h-[40px] focus:outline-none focus:border-[#25d366] text-sm bg-gray-50"
               rows={1}
             />
           </div>
@@ -82,7 +82,7 @@ export const ChatInput = ({ onSendMessage, currentUser }: ChatInputProps) => {
         </div>
         
         <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <IconButton aria-label="Emoji">
               <Smile className="h-[18px] w-[18px] text-gray-500" />
             </IconButton>
@@ -116,4 +116,4 @@ export const ChatInput = ({ onSendMessage, currentUser }: ChatInputProps) => {
       </div>
     </div>
   );
-};
+}
